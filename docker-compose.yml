@@ -1,0 +1,11 @@
+volumes:
+  bundler_gems:
+services:
+  gem:
+    build:
+      context: .
+    volumes:
+      - .:/gem:cached
+      - bundler_gems:/usr/local/bundle/
+    command: bundle install
+
