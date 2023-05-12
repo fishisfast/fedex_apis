@@ -14,6 +14,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     concurrent-ruby (1.2.2)
+    dotenv (2.8.1)
     excon (0.99.0)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
@@ -28,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
+  dotenv
   fedex_apis!
   minitest (~> 5.0)
   rake (~> 13.0)
