@@ -1,0 +1,62 @@
+{
+  "requestedShipment": {
+    "shipper": {
+      "address": {
+        "postalCode": 19726,
+        "countryCode": "US"
+      }
+    },
+    "recipient": {
+      "address": {
+        "postalCode": 2116,
+        "countryCode": "AU"
+      }
+    },
+    "shipDateStamp": "2020-07-03",
+    "pickupType": "DROPOFF_AT_FEDEX_LOCATION",
+    "serviceType": "INTERNATIONAL_PRIORITY",
+    "rateRequestType": [
+      "LIST",
+      "ACCOUNT"
+    ],
+    "customsClearanceDetail": {
+      "dutiesPayment": {
+        "paymentType": "SENDER",
+        "payor": {
+          "responsibleParty": null
+        }
+      },
+      "commodities": [
+        {
+          "description": "Camera",
+          "quantity": 1,
+          "quantityUnits": "PCS",
+          "weight": {
+            "units": "KG",
+            "value": 11
+          },
+          "customsValue": {
+            "amount": 100,
+            "currency": "SFR"
+          }
+        }
+      ]
+    },
+    "requestedPackageLineItems": [
+      {
+        "groupPackageCount": 2,
+        "weight": {
+          "units": "KG",
+          "value": 1
+        }
+      },
+      {
+        "groupPackageCount": 3,
+        "weight": {
+          "units": "KG",
+          "value": 10
+        }
+      }
+    ]
+  }
+}
