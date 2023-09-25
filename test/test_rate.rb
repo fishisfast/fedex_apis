@@ -7,7 +7,13 @@ class TestRate < Minitest::Test
   def test_rate
     VCR.use_cassette('rate') do
       rate = client.rate(rate_data)
-      quotes =  rate.output['rateReplyDetails']
+      puts JSON.pretty_generate(rate_data).gsub(":", " =>")
+
+
+      quotes = rate.output['rateReplyDetails']
+
+      assert rate.status == 200
+      assert rate.success?
 
       refute_nil quotes
       refute_empty quotes

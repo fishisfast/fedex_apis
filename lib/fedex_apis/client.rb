@@ -27,7 +27,7 @@ module FedexApis
     def rate(params)
       access_token = get_token.access_token
       response = Request::Rate.new(@options, params: params).run(access_token)
-      Resource::Rate.new(JSON.parse(response.body))
+      Resource::Rate.new(response.status, response.body)
     end
 
     private

@@ -8,6 +8,7 @@ require "minitest/reporters"
 
 require "dotenv/load"
 require "vcr"
+require "debug"
 
 # add color output
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
@@ -15,6 +16,9 @@ Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => tru
 VCR.configure do |config|
   config.cassette_library_dir = "test/vcr_cassettes"
   config.hook_into :excon
+  config.default_cassette_options = {
+    decode_compressed_response: true,
+  }
 
   config.filter_sensitive_data('<FILTERED_CLIENT_ID>') { ENV['FEDEX_APIS_CLIENT_ID'] }
   config.filter_sensitive_data('<FILTERED_CLIENT_SECRET>') { ENV['FEDEX_APIS_CLIENT_SECRET'] }

@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "excon"
   spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "debug"
   spec.add_development_dependency "dotenv"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "minitest"

@@ -22,25 +22,24 @@ http_interactions:
       - no-cache
       Cache-Control:
       - no-store
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
-      - '1043'
+      - '1353'
       Server:
       - Layer7-API-Gateway
       Date:
-      - Mon, 15 May 2023 15:06:07 GMT
+      - Wed, 20 Sep 2023 15:03:01 GMT
       Connection:
       - keep-alive
       Vary:
       - Accept-Encoding
       Server-Timing:
-      - cdn-cache; desc=MISS, edge; dur=347, origin; dur=533, ak_p; desc="467823_400248037_2419885901_88061_6074_57_-";dur=1
+      - cdn-cache; desc=MISS, edge; dur=137, origin; dur=576, ak_p; desc="1695222180470_388625944_2550884951_71296_6184_23_4_-";dur=1
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAAFVUybKrNhD9F68fKQYDJjvMZOmCbDPDxsVohJmMmV/l38O9laQqCy3UdXT6nO5W/z5ESZJ9Po+hfWXN4c9DtsIi1hJ8xdByNkAhDD6gMdlEAhx4db4rQeGPHbQFtDCHFuC8FcqeamDfmrGjqWysCUW4g3dMGWtVFTcmDDV3TLWKzKz/xfXQf30n+qDNWFEJlrBUjoZsllfbLIPSLQz5TiFbXNF2Z5HtLIZmUKAhP6BWqVQrvjm6gFbJyBNGp3Z34eQ3n2w7qgzwjAPPfEW+2cU0W8RK9Qo9ltzvLCg7fjfVxZ5rp5o6/JgrFUp3qCKzyNWQwQZkZb6WIr0fBiiu7Up7Iep0DXYOn9kLojnfuf71kgcMrP7xWcQXA+sSLBKtGmLarEDZYodWx1CDU/bDg44JWW3JuuetCzK9nLcrPk0BU2yB75LRBVVJE1YJprZdXxN5bKPX6pxI7Bx46qbX4Xeuo16jKbYEMqaHKsbC9PN2d57vvUg0d01oYQzc/7QqkQ+rgDHhrrcKGVikmrD6JFjvGAq73iq7iPhaKvRVvi+oDBhUJrvWjoysb53GHNjihuSw1j2zDMtkQDLExkoVgQ023U6rwLszSHb3/ik0svZBiUqxy0J38HKhnwfbN87GQjkrRZMAdOfaF0BsWr6rY4WxlLrAruhk3VKB3FguDIZkeRsAlThdp1ui9FwqGRontxcmj9O3Y9I8CzYl1vEJkyUXnRI1HjH7cy9APnWZ49sqiWbaKPbmJqlKNC9n+BztSMjUdkmbUxjVhHx6o2jV3hmYjmcBKIZ87a6lexqAkeBVeBZKG/bN3Ibnkm2exMtGBsj7seDAe+ElB8rYfXLhcSm4+lM37DrNIU+E0cm0EIzOFL921lXX7jfQ8c/7k4gvAYrVIK7yxtaWPDNaLjL9u+m1dBlyZwa/u1Z6RJ6oXR6epFAL7g0uq2/7p5Dulh0A2ita82u6fez8k7KOSccX7R09Jsqmx+ahaMcvK3K0G8Q3RRFn+9x74UXiIk4XSfZh6fIzswvVbjmWcaah607i5BpGzhd3hlvfXP2Fw/wdlMUavKaHxEwjs8j0F+2ud/KcCxmj0eeb2bg930+ihIw2HOdzpKrR2pO5cE3zhJC8p4eREBv7TIm8fQHlq4VYUAUuSeQrmLRl0mncEpUzj22aCxsVnm6XiQx4d+6io/wCobvKi3ntSYKyWkeOt9OQnXzZ0/yjxCM4QroB81H+zBLUNb7sySJsXR2sXdzqSpryIqd4Pj8ggvEIo10QX5y6gvdLm0QTLE7QGTmDCAodwUY0mTw1rBE7M68cfh1+duBjWLtsX4RxFvVZv0ezpcN99nngfT0yrCD8OnyS9gci+dbhr78B1nZiWkIFAAA=
-  recorded_at: Mon, 15 May 2023 15:06:07 GMT
-recorded_with: VCR 6.1.0
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJDWFMtVFAiXSwiUGF5bG9hZCI6eyJjbGllbnRJZGVudGl0eSI6eyJjbGllbnRLZXkiOiJsNzMyNjIxZjE4MDRjOTRjYjVhMDQ1NTAyNzQ5NTUxMGM1In0sImF1dGhlbnRpY2F0aW9uUmVhbG0iOiJDTUFDIiwiYWRkaXRpb25hbElkZW50aXR5Ijp7InRpbWVTdGFtcCI6IjIwLVNlcC0yMDIzIDEwOjAzOjAxIEVTVCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhcGltb2RlIjoiU2FuZGJveCIsImN4c0lzcyI6Imh0dHBzOi8vY3hzYXV0aHNlcnZlci1zdGFnaW5nLmFwcC5wYWFzLmZlZGV4LmNvbS90b2tlbi9vYXV0aDIifSwicGVyc29uYVR5cGUiOiJEaXJlY3RJbnRlZ3JhdG9yX0IyQiJ9LCJleHAiOjE2OTUyMjU3ODEsImp0aSI6ImE3YzAwYmIyLWMwMDAtNDBiMC1hZGRkLWI1NmNlYzNjNzZiMyJ9.a2U_priLORfkoxMKFrnNRaTp_wpwmKsjjo2CQ5_BltmYnlhSen4qCCEy7ReM62RvXBWNKNqHjyjuitXikmY7KgFF4AxTAajF5FG-7oaeYfq7NWh3susW0sbgABkoetn_Z5LcXtDNeMjq_SLLGSUhMOFui1G4FsIqspbDEer4k8LHuum_VFSpc0aoP96rSKB9Bqcv4Yiha53gAX_hmw5qyCEkMlU5ioTYBtyDTxQk3g-Uoo68gXYfar3ngeT3Os8yVwzUR7l-QP4VK8OzweCNe9K_wBsF9_7arluEQ81FL83dTErbtmeLn41f7QmmjmqXK29PX2PiPX8HV9npbK8BkT4JjdGXznzSoVswEapMEfbtfUj00ZX3I83ChLyba0SOX-OO9nnCtUwPNSWh7wKfh3UQfRb-BXMr752DmNRG6phpzqDh5kVmp8MPveU--dzFoGSaUjW_1qRF-dZWWZmKjEG31BFX3vGGv3E5rv72NadT84BJVXyT66UCeVUHHJBgqV3X4u8153G4SMOlH7DBN0ecTUJFyjkmxP9kct_O12x8gH8GPJIqSPw2doXBJk0erBs5uEo93pKqXHxpQKKnb7RhuqzY-dCA1sgpDKzTAyYsUrMombJ8APbbKUn5xzMyM-F3FpM7nWVuIkrSJRpC1LwvsYRGGiV1c4XGfNpVSw8","token_type":"bearer","expires_in":3599,"scope":"CXS-TP"}'
+    adapter_metadata:
+      vcr_decompressed: gzip
+  recorded_at: Wed, 20 Sep 2023 15:03:00 GMT
+recorded_with: VCR 6.2.0
