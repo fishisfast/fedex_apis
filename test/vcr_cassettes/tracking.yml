@@ -1,0 +1,129 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apis-sandbox.fedex.com/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=<FILTERED_CLIENT_ID>&client_secret=<FILTERED_CLIENT_SECRET>
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Locale:
+      - en_US
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      X-API-Mode:
+      - Sandbox
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1353'
+      Server:
+      - Layer7-API-Gateway
+      Date:
+      - Mon, 04 Mar 2024 14:46:37 GMT
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Server-Timing:
+      - cdn-cache; desc=MISS, edge; dur=404, origin; dur=332, ak_p; desc="1709563596447_1551567328_272902120_73591_21196_22_28_-";dur=1
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJDWFMtVFAiXSwiUGF5bG9hZCI6eyJjbGllbnRJZGVudGl0eSI6eyJjbGllbnRLZXkiOiJsNzMyNjIxZjE4MDRjOTRjYjVhMDQ1NTAyNzQ5NTUxMGM1In0sImF1dGhlbnRpY2F0aW9uUmVhbG0iOiJDTUFDIiwiYWRkaXRpb25hbElkZW50aXR5Ijp7InRpbWVTdGFtcCI6IjA0LU1hci0yMDI0IDA5OjQ2OjM3IEVTVCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhcGltb2RlIjoiU2FuZGJveCIsImN4c0lzcyI6Imh0dHBzOi8vY3hzYXV0aHNlcnZlci1zdGFnaW5nLmFwcC5wYWFzLmZlZGV4LmNvbS90b2tlbi9vYXV0aDIifSwicGVyc29uYVR5cGUiOiJEaXJlY3RJbnRlZ3JhdG9yX0IyQiJ9LCJleHAiOjE3MDk1NjcxOTcsImp0aSI6ImRhYWZhMWNhLWZkNTktNDM2ZC1hMzQ3LTE2ODg0MDczNDIyMyJ9.l76Xb0Lb4IcV88GGriQz8q1mC85qVfJgHjYAlxHkhsyLGT-nRv5cYBqPieNd8TcAaiODveKU8HW9CF4j7905RNIhwjbGTF1XMJcZq-UkFkHcRjdQ88pKiE0JQTlMgOAGWUMXYQfzChMiJ-MIL0a5uJkEzT1INvTTDSPG9thIpEHjA5vwabdF-6xBOcCwM27Xb110RccbJtgbLuR-R-6oIcBYGTAKHMj1BwMKpafMDYSQ4yFMfdY3ouKx42Jnc_cU90paPRWM95i6CkAqe_VKVXCVe-WjzDQm59QPJTToD59-lY10uOvfa8cG1OcsLq7AsOjcXWchAVRFFHzIHT75exUGS07f5YTPVRAYHuQXiNsnEl7WH4xdKZpTPrEgYC_zUffMl0XoOEO3Dz7QPHcI6a_wDTOVzVjh9cgfXhYud187tKge_O51L0iu44v4JIq5HaI2OpWnf_MegLiWzI7DG89XsYZvba8Kz4mBBw2wg7xpN8VQpCk66wUN9bm_wbg-WkQjLZi52JoCLYqQk4M1XXFSTRvR32lNA7JmWXeA310Nx117KX4WS1WbeKpTxEvFsB74BB3xFxbQOr8I-B9wB6_oNFVTDayJfetSonYT671i3zXCMTACtWxhrwFHG9CPNnP2V_4gAC_1yNS-T19C6rsudjJeAT7aViG1s_TpztA","token_type":"bearer","expires_in":3599,"scope":"CXS-TP"}'
+    adapter_metadata:
+      vcr_decompressed: gzip
+  recorded_at: Mon, 04 Mar 2024 14:46:37 GMT
+- request:
+    method: post
+    uri: https://apis-sandbox.fedex.com/track/v1/trackingnumbers
+    body:
+      encoding: UTF-8
+      string: '{"includeDetailedScans":true,"trackingInfo":[{"shipDateBegin":"2020-03-29","shipDateEnd":"2020-04-01","trackingNumberInfo":{"trackingNumber":"128667043726","carrierCode":"FDXE","trackingNumberUniqueId":"245822~123456789012~FDEG"}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Locale:
+      - en_US
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJDWFMtVFAiXSwiUGF5bG9hZCI6eyJjbGllbnRJZGVudGl0eSI6eyJjbGllbnRLZXkiOiJsNzMyNjIxZjE4MDRjOTRjYjVhMDQ1NTAyNzQ5NTUxMGM1In0sImF1dGhlbnRpY2F0aW9uUmVhbG0iOiJDTUFDIiwiYWRkaXRpb25hbElkZW50aXR5Ijp7InRpbWVTdGFtcCI6IjA0LU1hci0yMDI0IDA5OjQ2OjM3IEVTVCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhcGltb2RlIjoiU2FuZGJveCIsImN4c0lzcyI6Imh0dHBzOi8vY3hzYXV0aHNlcnZlci1zdGFnaW5nLmFwcC5wYWFzLmZlZGV4LmNvbS90b2tlbi9vYXV0aDIifSwicGVyc29uYVR5cGUiOiJEaXJlY3RJbnRlZ3JhdG9yX0IyQiJ9LCJleHAiOjE3MDk1NjcxOTcsImp0aSI6ImRhYWZhMWNhLWZkNTktNDM2ZC1hMzQ3LTE2ODg0MDczNDIyMyJ9.l76Xb0Lb4IcV88GGriQz8q1mC85qVfJgHjYAlxHkhsyLGT-nRv5cYBqPieNd8TcAaiODveKU8HW9CF4j7905RNIhwjbGTF1XMJcZq-UkFkHcRjdQ88pKiE0JQTlMgOAGWUMXYQfzChMiJ-MIL0a5uJkEzT1INvTTDSPG9thIpEHjA5vwabdF-6xBOcCwM27Xb110RccbJtgbLuR-R-6oIcBYGTAKHMj1BwMKpafMDYSQ4yFMfdY3ouKx42Jnc_cU90paPRWM95i6CkAqe_VKVXCVe-WjzDQm59QPJTToD59-lY10uOvfa8cG1OcsLq7AsOjcXWchAVRFFHzIHT75exUGS07f5YTPVRAYHuQXiNsnEl7WH4xdKZpTPrEgYC_zUffMl0XoOEO3Dz7QPHcI6a_wDTOVzVjh9cgfXhYud187tKge_O51L0iu44v4JIq5HaI2OpWnf_MegLiWzI7DG89XsYZvba8Kz4mBBw2wg7xpN8VQpCk66wUN9bm_wbg-WkQjLZi52JoCLYqQk4M1XXFSTRvR32lNA7JmWXeA310Nx117KX4WS1WbeKpTxEvFsB74BB3xFxbQOr8I-B9wB6_oNFVTDayJfetSonYT671i3zXCMTACtWxhrwFHG9CPNnP2V_4gAC_1yNS-T19C6rsudjJeAT7aViG1s_TpztA
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      X-API-Mode:
+      - Sandbox
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '7576'
+      Server:
+      - Layer7-API-Gateway
+      Date:
+      - Mon, 04 Mar 2024 14:46:37 GMT
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Server-Timing:
+      - cdn-cache; desc=MISS, edge; dur=141, origin; dur=85, ak_p; desc="1709563597274_1551567328_272903046_22564_8958_17_7_-";dur=1
+    body:
+      encoding: ASCII-8BIT
+      string: '{"transactionId":"APIF_SV_TRKC_TxID9354681c-602c-4e35-b376-403c535f2b98","customertransactionId":"APIF_SV_TRKC_TxIDcustomer
+        test","output":{"alerts":[{"code":"VIRTUAL.RESPONSE","message":"This is a
+        Virtual Response."}],"completeTrackResults":[{"trackingNumber":"509466710003247","trackResults":[{"trackingNumberInfo":{"trackingNumber":"509466710003247","trackingNumberUniqueId":"120070924140921438000~509466710003247~FDEG","carrierCode":"FDXG"},"additionalTrackingInfo":{"nickname":"","packageIdentifiers":[{"type":"STANDARD_MPS","values":["509466710003247"],"trackingNumberUniqueId":"120070924140921438000","carrierCode":""},{"type":"CUSTOMER_REFERENCE","values":["ORD11090"],"trackingNumberUniqueId":"","carrierCode":""}],"hasAssociatedShipments":true},"shipperInformation":{"address":{"city":"Arcadia","stateOrProvinceCode":"WI","countryCode":"US","residential":false,"countryName":"United
+        States"}},"recipientInformation":{"address":{"city":"SANTA FE","stateOrProvinceCode":"NM","countryCode":"US","residential":false,"countryName":"United
+        States"}},"latestStatusDetail":{"code":"DL","derivedCode":"DL","statusByLocale":"Delivered","description":"Delivered","scanLocation":{"city":"Santa
+        Fe","stateOrProvinceCode":"NM","countryCode":"US","residential":false,"countryName":"United
+        States"}},"dateAndTimes":[{"type":"ACTUAL_DELIVERY","dateTime":"2007-09-27T09:17:02-06:00"},{"type":"ACTUAL_PICKUP","dateTime":"2007-09-24T00:00:00-06:00"},{"type":"SHIP","dateTime":"2007-09-24T00:00:00-06:00"}],"availableImages":[{"type":"SIGNATURE_PROOF_OF_DELIVERY"}],"packageDetails":{"packagingDescription":{"type":"YOUR_PACKAGING","description":"Package"},"physicalPackagingType":"PACKAGE","sequenceNumber":"1","count":"25","weightAndDimensions":{"weight":[{"value":"20.0","unit":"LB"},{"value":"9.07","unit":"KG"}],"dimensions":[{"length":19,"width":10,"height":9,"units":"IN"},{"length":48,"width":25,"height":22,"units":"CM"}]},"packageContent":[]},"shipmentDetails":{"possessionStatus":true,"weight":[{"value":"500.0","unit":"LB"},{"value":"226.8","unit":"KG"}]},"scanEvents":[{"date":"2007-09-27T09:17:02-06:00","eventType":"DL","eventDescription":"Delivered","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"Santa
+        Fe","stateOrProvinceCode":"NM","postalCode":"87508","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationType":"DELIVERY_LOCATION","derivedStatusCode":"DL","derivedStatus":"Delivered"},{"date":"2007-09-27T04:29:00-06:00","eventType":"OD","eventDescription":"On
+        FedEx vehicle for delivery","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"SANTA
+        FE","stateOrProvinceCode":"NM","postalCode":"87505","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0875","locationType":"VEHICLE","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-27T03:54:44-06:00","eventType":"AR","eventDescription":"At
+        local FedEx facility","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"SANTA
+        FE","stateOrProvinceCode":"NM","postalCode":"87505","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0875","locationType":"DESTINATION_FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-26T14:11:37-06:00","eventType":"DP","eventDescription":"Departed
+        FedEx location","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"HENDERSON","stateOrProvinceCode":"CO","postalCode":"80640","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0802","locationType":"FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-26T12:48:00-06:00","eventType":"AR","eventDescription":"Arrived
+        at FedEx location","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"HENDERSON","stateOrProvinceCode":"CO","postalCode":"80640","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0802","locationType":"FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-25T10:20:00-05:00","eventType":"DP","eventDescription":"Departed
+        FedEx location","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"SAINT
+        PAUL","stateOrProvinceCode":"MN","postalCode":"55115","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0552","locationType":"FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-25T01:27:00-05:00","eventType":"AR","eventDescription":"Arrived
+        at FedEx location","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"SAINT
+        PAUL","stateOrProvinceCode":"MN","postalCode":"55115","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0552","locationType":"FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-24T21:14:09-05:00","eventType":"DP","eventDescription":"Left
+        FedEx origin facility","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"HOLMEN","stateOrProvinceCode":"WI","postalCode":"54636","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0546","locationType":"ORIGIN_FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-24T18:53:00-05:00","eventType":"AR","eventDescription":"Arrived
+        at FedEx location","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"HOLMEN","stateOrProvinceCode":"WI","postalCode":"54636","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0546","locationType":"FEDEX_FACILITY","derivedStatusCode":"IT","derivedStatus":"In
+        transit"},{"date":"2007-09-24T15:24:00-05:00","eventType":"PU","eventDescription":"Picked
+        up","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"city":"HOLMEN","stateOrProvinceCode":"WI","postalCode":"54636","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationId":"0546","locationType":"PICKUP_LOCATION","derivedStatusCode":"PU","derivedStatus":"Picked
+        up"},{"date":"2007-09-24T13:09:00-05:00","eventType":"OC","eventDescription":"Shipment
+        information sent to FedEx","exceptionCode":"","exceptionDescription":"","scanLocation":{"streetLines":[""],"postalCode":"54612","countryCode":"US","residential":false,"countryName":"United
+        States"},"locationType":"CUSTOMER","derivedStatusCode":"IN","derivedStatus":"Initiated"}],"availableNotifications":[],"deliveryDetails":{"actualDeliveryAddress":{"city":"Santa
+        Fe","stateOrProvinceCode":"NM","countryCode":"US","residential":false,"countryName":"United
+        States"},"deliveryAttempts":"0","receivedByName":"SOTO","deliveryOptionEligibilityDetails":[{"option":"INDIRECT_SIGNATURE_RELEASE","eligibility":"INELIGIBLE"},{"option":"REDIRECT_TO_HOLD_AT_LOCATION","eligibility":"INELIGIBLE"},{"option":"REROUTE","eligibility":"INELIGIBLE"},{"option":"RESCHEDULE","eligibility":"INELIGIBLE"},{"option":"RETURN_TO_SHIPPER","eligibility":"INELIGIBLE"},{"option":"DISPUTE_DELIVERY","eligibility":"POSSIBLY_ELIGIBLE"},{"option":"SUPPLEMENT_ADDRESS","eligibility":"INELIGIBLE"}]},"serviceDetail":{"type":"FEDEX_GROUND","description":"FedEx
+        Ground","shortDescription":"FG"},"standardTransitTimeWindow":{"window":{"ends":"2007-09-27T00:00:00-06:00"}},"estimatedDeliveryTimeWindow":{"window":{}},"goodsClassificationCode":"","returnDetail":{}}]}]}}'
+    adapter_metadata:
+      vcr_decompressed: gzip
+  recorded_at: Mon, 04 Mar 2024 14:46:37 GMT
+recorded_with: VCR 6.2.0

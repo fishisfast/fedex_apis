@@ -8,7 +8,6 @@ require_relative "fedex_apis/client"
 
 module FedexApis
   class Error < StandardError; end
-  # Your code goes here...
 
   def self.root
     File.dirname __dir__

@@ -7,6 +7,9 @@ require_relative 'resource/token'
 require_relative 'request/rate'
 require_relative 'resource/rate'
 
+require_relative 'request/tracking'
+require_relative 'resource/tracking'
+
 module FedexApis
   class Client
 
@@ -28,6 +31,12 @@ module FedexApis
       access_token = get_token.access_token
       response = Request::Rate.new(@options, params: params).run(access_token)
       Resource::Rate.new(response.status, response.body)
+    end
+
+    def track(params)
+      access_token = get_token.access_token
+      response = Request::Tracking.new(@options, params: params).run(access_token)
+      Resource::Tracking.new(response.status, response.body)
     end
 
     private
