@@ -14,7 +14,8 @@ module FedexApis
             grant_type: 'client_credentials',
             client_id: options[:client_id],
             client_secret: options[:client_secret]
-          })
+          }),
+          timeout: 5
         )
       end
 

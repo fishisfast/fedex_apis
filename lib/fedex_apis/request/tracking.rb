@@ -14,7 +14,8 @@ module FedexApis
           headers: {
             'Authorization' => "Bearer #{access_token}",
           },
-          body: params.to_json
+          body: params.to_json,
+          timeout: 5
         )
       end
 
