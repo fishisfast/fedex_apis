@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+require 'active_support/core_ext/object/blank'
 require 'excon'
 require 'json'
 
@@ -12,7 +15,6 @@ require_relative 'resource/tracking'
 
 module FedexApis
   class Client
-
     OPTIONS = %i[host client_id client_secret account_number].freeze
 
     attr_accessor :options
@@ -22,19 +24,19 @@ module FedexApis
       load_env_options
     end
 
-    def get_token
+    def token
       response = Request::Token.new(@options).run
       Resource::Token.new(JSON.parse(response.body))
     end
 
     def rate(params)
-      access_token = get_token.access_token
+      access_token = token.access_token
       response = Request::Rate.new(@options, params: params).run(access_token)
       Resource::Rate.new(response.status, response.body)
     end
 
     def track(params)
-      access_token = get_token.access_token
+      access_token = token.access_token
       response = Request::Tracking.new(@options, params: params).run(access_token)
       Resource::Tracking.new(response.status, response.body)
     end
@@ -43,10 +45,9 @@ module FedexApis
 
     def load_env_options
       OPTIONS.each do |option|
-        options[option] ||= ENV["FEDEX_APIS_#{option.upcase}"]
+        options[option] ||= ENV.fetch("FEDEX_APIS_#{option.upcase}", nil)
         raise ArgumentError, "Missing option: #{option}" if options[option].blank?
       end
     end
-
   end
 end

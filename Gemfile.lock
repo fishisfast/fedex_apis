@@ -55,6 +55,8 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    minitest-rg (5.4.0)
+      minitest (>= 5.0, < 7)
     parallel (1.27.0)
     parser (3.3.10.1)
       ast (~> 2.4.1)
@@ -90,6 +92,13 @@ GEM
     rubocop-ast (1.49.0)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
+    rubocop-minitest (0.38.2)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rake (0.7.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     stringio (3.2.0)
@@ -114,8 +123,11 @@ DEPENDENCIES
   fedex_apis!
   minitest
   minitest-reporters
+  minitest-rg
   rake
   rubocop
+  rubocop-minitest
+  rubocop-rake
   vcr
 
 BUNDLED WITH

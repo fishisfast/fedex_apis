@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'base'
 
 module FedexApis
   module Request
     class Tracking < Base
-
       def initialize(conn_options = {}, params: {})
         super
       end
@@ -12,13 +13,12 @@ module FedexApis
         connection.post(
           path: 'track/v1/trackingnumbers',
           headers: {
-            'Authorization' => "Bearer #{access_token}",
+            'Authorization' => "Bearer #{access_token}"
           },
           body: params.to_json,
           timeout: 5
         )
       end
-
     end
   end
 end

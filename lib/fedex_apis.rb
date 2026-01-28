@@ -3,8 +3,8 @@
 require 'active_support'
 require 'active_support/core_ext/string'
 
-require_relative "fedex_apis/version"
-require_relative "fedex_apis/client"
+require_relative 'fedex_apis/version'
+require_relative 'fedex_apis/client'
 
 module FedexApis
   class Error < StandardError; end
