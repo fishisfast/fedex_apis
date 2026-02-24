@@ -1,0 +1,59 @@
+{
+  "labelResponseOptions": "LABEL",
+  "requestedShipment": {
+    "shipper": {
+      "contact": {
+        "personName": "John Sender",
+        "phoneNumber": "1234567890",
+        "companyName": "Sender Company"
+      },
+      "address": {
+        "streetLines": [
+          "123 Sender St"
+        ],
+        "city": "Austin",
+        "stateOrProvinceCode": "TX",
+        "postalCode": "73301",
+        "countryCode": "US"
+      }
+    },
+    "recipients": [
+      {
+        "contact": {
+          "personName": "Jane Recipient",
+          "phoneNumber": "9876543210",
+          "companyName": "Recipient Company"
+        },
+        "address": {
+          "streetLines": [
+            "456 Recipient Ave"
+          ],
+          "city": "Los Angeles",
+          "stateOrProvinceCode": "CA",
+          "postalCode": "90001",
+          "countryCode": "US"
+        }
+      }
+    ],
+    "shipDatestamp": "2024-01-15",
+    "serviceType": "FEDEX_GROUND",
+    "packagingType": "YOUR_PACKAGING",
+    "pickupType": "USE_SCHEDULED_PICKUP",
+    "blockInsightVisibility": false,
+    "shippingChargesPayment": {
+      "paymentType": "SENDER"
+    },
+    "labelSpecification": {
+      "imageType": "PDF",
+      "labelStockType": "PAPER_85X11_TOP_HALF_LABEL"
+    },
+    "requestedPackageLineItems": [
+      {
+        "weight": {
+          "units": "LB",
+          "value": 10
+        }
+      }
+    ]
+  }
+}

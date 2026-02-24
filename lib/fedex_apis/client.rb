@@ -13,6 +13,9 @@ require_relative 'resource/rate'
 require_relative 'request/tracking'
 require_relative 'resource/tracking'
 
+require_relative 'request/shipment'
+require_relative 'resource/shipment'
+
 module FedexApis
   class Client
     OPTIONS = %i[host client_id client_secret account_number].freeze
@@ -39,6 +42,24 @@ module FedexApis
       access_token = token.access_token
       response = Request::Tracking.new(@options, params: params).run(access_token)
       Resource::Tracking.new(response.status, response.body)
+    end
+
+    def create_shipment(params)
+      access_token = token.access_token
+      response = Request::Shipment.new(@options, params: params).create(access_token)
+      Resource::Shipment.new(response.status, response.body)
+    end
+
+    def validate_shipment(params)
+      access_token = token.access_token
+      response = Request::Shipment.new(@options, params: params).validate(access_token)
+      Resource::Shipment.new(response.status, response.body)
+    end
+
+    def cancel_shipment(tracking_number)
+      access_token = token.access_token
+      response = Request::Shipment.new(@options).cancel(access_token, tracking_number)
+      Resource::Shipment.new(response.status, response.body)
     end
 
     private

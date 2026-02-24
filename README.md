@@ -11,7 +11,328 @@ Add  to your Gemfile:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Setup
+
+Initialize the client with your FedEx API credentials:
+
+```ruby
+require 'fedex_apis'
+
+# Option 1: Use environment variables from .env file
+# Create a .env file with:
+#   FEDEX_APIS_HOST=https://apis-sandbox.fedex.com
+#   FEDEX_APIS_CLIENT_ID=your_client_id
+#   FEDEX_APIS_CLIENT_SECRET=your_client_secret
+#   FEDEX_APIS_ACCOUNT_NUMBER=your_account_number
+require 'dotenv/load'
+client = FedexApis::Client.new
+
+# Option 2: Use environment variables (without .env file)
+# Set FEDEX_APIS_HOST, FEDEX_APIS_CLIENT_ID, FEDEX_APIS_CLIENT_SECRET, FEDEX_APIS_ACCOUNT_NUMBER
+client = FedexApis::Client.new
+
+# Option 3: Pass credentials directly
+client = FedexApis::Client.new(
+  host: 'https://apis-sandbox.fedex.com',
+  client_id: 'your_client_id',
+  client_secret: 'your_client_secret',
+  account_number: 'your_account_number'
+)
+```
+
+### Rate API
+
+Get shipping rates for a shipment:
+
+```ruby
+rate_params = {
+  requestedShipment: {
+    shipper: {
+      address: {
+        postalCode: 19726,
+        countryCode: "US"
+      }
+    },
+    recipient: {
+      address: {
+        postalCode: 2116,
+        countryCode: "AU"
+      }
+    },
+    shipDateStamp: "2024-01-15",
+    pickupType: "DROPOFF_AT_FEDEX_LOCATION",
+    serviceType: "INTERNATIONAL_PRIORITY",
+    rateRequestType: ["LIST", "ACCOUNT"],
+    requestedPackageLineItems: [
+      {
+        weight: {
+          units: "KG",
+          value: 10
+        }
+      }
+    ]
+  }
+}
+
+rate = client.rate(rate_params)
+
+if rate.success?
+  quotes = rate.output['rateReplyDetails']
+  quotes.each do |quote|
+    puts "Service: #{quote['serviceType']}"
+    puts "Total: #{quote['ratedShipmentDetails'][0]['totalNetCharge']}"
+  end
+end
+```
+
+### Tracking API
+
+Track a shipment by tracking number:
+
+```ruby
+tracking_params = {
+  trackingInfo: [
+    {
+      trackingNumberInfo: {
+        trackingNumber: "794972072690"
+      }
+    }
+  ],
+  includeDetailedScans: true
+}
+
+tracking = client.track(tracking_params)
+
+if tracking.success?
+  results = tracking.output['completeTrackResults']
+  results.each do |result|
+    track_result = result['trackResults'][0]
+    puts "Status: #{track_result['latestStatusDetail']['description']}"
+    puts "Delivery Date: #{track_result['dateAndTimes'][0]['dateTime']}"
+  end
+end
+```
+
+### Shipment API
+
+#### Create a Shipment
+
+Create a single package shipment and get the label:
+
+```ruby
+shipment_params = {
+  labelResponseOptions: "LABEL",
+  requestedShipment: {
+    shipper: {
+      contact: {
+        personName: "John Sender",
+        phoneNumber: "1234567890",
+        companyName: "Sender Company"
+      },
+      address: {
+        streetLines: ["123 Sender St"],
+        city: "Austin",
+        stateOrProvinceCode: "TX",
+        postalCode: "73301",
+        countryCode: "US"
+      }
+    },
+    recipients: [
+      {
+        contact: {
+          personName: "Jane Recipient",
+          phoneNumber: "9876543210",
+          companyName: "Recipient Company"
+        },
+        address: {
+          streetLines: ["456 Recipient Ave"],
+          city: "Los Angeles",
+          stateOrProvinceCode: "CA",
+          postalCode: "90001",
+          countryCode: "US"
+        }
+      }
+    ],
+    shipDatestamp: "2024-01-15",
+    serviceType: "FEDEX_GROUND",
+    packagingType: "YOUR_PACKAGING",
+    pickupType: "USE_SCHEDULED_PICKUP",
+    shippingChargesPayment: {
+      paymentType: "SENDER"
+    },
+    labelSpecification: {
+      imageType: "PDF",
+      labelStockType: "PAPER_85X11_TOP_HALF_LABEL"
+    },
+    requestedPackageLineItems: [
+      {
+        weight: {
+          units: "LB",
+          value: 10
+        }
+      }
+    ]
+  }
+}
+
+shipment = client.create_shipment(shipment_params)
+
+if shipment.success?
+  # Get tracking number
+  puts "Tracking Number: #{shipment.tracking_number}"
+  
+  # ⭐ Consistent Interface - Get label content (works with both URL and base64)
+  shipment.save_label('label.pdf')  # Simplest - saves directly to file
+  
+  # Or get the binary content
+  label_binary = shipment.label_content
+  File.write('label.pdf', label_binary, mode: 'wb')
+  
+  # Get all documents
+  shipment.documents.each do |doc|
+    puts "Document: #{doc['contentType']} - #{doc['docType']}"
+  end
+end
+```
+
+#### Multi-Package Shipment (MPS)
+
+Create a shipment with multiple packages:
+
+```ruby
+shipment_params = {
+  labelResponseOptions: "LABEL",
+  requestedShipment: {
+    # ... shipper and recipient details ...
+    requestedPackageLineItems: [
+      { weight: { units: "LB", value: 10 } },
+      { weight: { units: "LB", value: 15 } },
+      { weight: { units: "LB", value: 8 } }
+    ]
+  }
+}
+
+shipment = client.create_shipment(shipment_params)
+
+if shipment.success?
+  # Master tracking number for the entire shipment
+  puts "Master Tracking: #{shipment.master_tracking_number}"
+  
+  # Individual tracking numbers for each package
+  shipment.tracking_numbers.each_with_index do |tn, i|
+    puts "Package #{i + 1}: #{tn}"
+  end
+  
+  # ⭐ Consistent Interface - Save all labels (works with both URL and base64)
+  saved_files = shipment.save_labels('./labels')
+  saved_files.each { |file| puts "Saved: #{file}" }
+  
+  # Or get all label contents as binary data
+  shipment.label_contents.each_with_index do |content, i|
+    puts "Label #{i + 1}: #{content.bytesize} bytes"
+  end
+end
+```
+
+#### Validate a Shipment
+
+Validate shipment details before creating:
+
+```ruby
+validation = client.validate_shipment(shipment_params)
+
+if validation.success?
+  puts "Shipment is valid!"
+else
+  puts "Validation errors:"
+  validation.errors.each { |e| puts e['message'] }
+end
+```
+
+#### Cancel a Shipment
+
+Cancel a shipment using its tracking number:
+
+```ruby
+cancel = client.cancel_shipment("794972072690")
+
+if cancel.success?
+  puts "Shipment cancelled successfully"
+end
+```
+
+### Working with Labels
+
+**⭐ Recommended: Use the Consistent Interface**
+
+The gem provides methods that handle FedEx's inconsistent label formats (URL or base64) automatically:
+
+```ruby
+shipment = client.create_shipment(params)
+
+# Save label to file (handles both formats automatically)
+shipment.save_label('label.pdf')
+
+# Get label as binary data
+label_binary = shipment.label_content
+File.write('label.pdf', label_binary, mode: 'wb')
+
+# For multi-package shipments
+shipment.save_labels('./labels')  # Saves as label_1.pdf, label_2.pdf, etc.
+
+# Or get all contents
+shipment.label_contents.each_with_index do |content, i|
+  File.write("label_#{i + 1}.pdf", content, mode: 'wb')
+end
+```
+
+**Consistent Interface Methods** (Recommended):
+- `label_content` - Get label as binary string (handles URL or base64)
+- `label_contents` - Get all labels as array of binary strings (MPS)
+- `save_label(path)` - Save label to file (handles URL or base64)
+- `save_labels(directory, prefix: 'label')` - Save all labels to directory (MPS)
+
+**Low-Level Access Methods** (If you need format-specific handling):
+- `label_url` / `label_urls` - Get URL if available
+- `label_encoded?` - Check if base64 encoded
+- `label_data` / `label_data_all` - Get raw base64 string
+- `label` / `labels` - Get full label object(s)
+
+**Why a consistent interface?** FedEx API behavior is unpredictable:
+- Same request can return different formats at different times
+- Multi-package shipments often return base64
+- Single-package can be either URL or base64
+- Sandbox and production both exhibit this behavior
+
+The consistent interface handles all cases automatically, so you don't need to check formats.
+
+### Error Handling
+
+All API methods return a resource object with status information:
+
+```ruby
+shipment = client.create_shipment(params)
+
+if shipment.success?
+  # Process successful response
+  puts shipment.tracking_number
+else
+  # Handle errors
+  puts "Status: #{shipment.status}"
+  
+  if shipment.has_errors?
+    shipment.errors.each do |error|
+      puts "Error: #{error['message']}"
+    end
+  end
+  
+  if shipment.has_alerts?
+    shipment.alerts.each do |alert|
+      puts "Alert: #{alert['message']}"
+    end
+  end
+end
+```
 
 ## Development
 

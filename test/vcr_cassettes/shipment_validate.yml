@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apis-sandbox.fedex.com/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=<FILTERED_CLIENT_ID>&client_secret=<FILTERED_CLIENT_SECRET>
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Locale:
+      - en_US
+      Accept-Encoding:
+      - deflate, gzip
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      X-API-Mode:
+      - Sandbox
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1353'
+      Server:
+      - Layer7-API-Gateway
+      Date:
+      - Wed, 28 Jan 2026 19:46:49 GMT
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Server-Timing:
+      - cdn-cache; desc=MISS, edge; dur=186, origin; dur=284, ak_p; desc="1769629609343_34679437_857814273_47525_7745_13_28_-";dur=1
+      Set-Cookie:
+      - fdx_bman=09de53f82c04464e806db59e5c6da761; path=/; domain=.apis-sandbox.fedex.com;
+        Secure
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJDWFMtVFAiXSwiUGF5bG9hZCI6eyJjbGllbnRJZGVudGl0eSI6eyJjbGllbnRLZXkiOiJsNzMyNjIxZjE4MDRjOTRjYjVhMDQ1NTAyNzQ5NTUxMGM1In0sImF1dGhlbnRpY2F0aW9uUmVhbG0iOiJDTUFDIiwiYWRkaXRpb25hbElkZW50aXR5Ijp7InRpbWVTdGFtcCI6IjI4LUphbi0yMDI2IDE0OjQ2OjQ5IEVTVCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhcGltb2RlIjoiU2FuZGJveCIsImN4c0lzcyI6Imh0dHBzOi8vY3hzYXV0aHNlcnZlci1zdGFnaW5nLmFwcC5wYWFzLmZlZGV4LmNvbS90b2tlbi9vYXV0aDIifSwicGVyc29uYVR5cGUiOiJEaXJlY3RJbnRlZ3JhdG9yX0IyQiJ9LCJleHAiOjE3Njk2MzMyMDksImp0aSI6IjQwYjFjMDhlLTRlZWEtNDI4OC1hYmQ2LWY4NDY5ZDljNDYzNiJ9.yxNSA4DU_bimF4mu26n5GLtt_rbir2TGmD7MjIh5tP7G0Kil56VVSf40DC0pGX-NoU3thRreuaPxmx0bx6U0OCXUauwchdGs9ViIEOGypYsZ9hS3VT1QqO3mbnE5IqxgT9_UePjczcaJbnQUc0_o619HpYBL07J0qMfVUNBI_Tc1dUyc39bDKpUhEOQBznii0exjjuSdbvFf2dEkskTDFW0QwOs-ifxM5ozyyt93kr9TfQFU0pPkmBWiryEt34NR07RbwOjR-JqaMWqLaWPvqEvG3v9v5WX8MtJTIcx2CHaTxwcPHLJgoEmrilZbmrjhTfNlLmqWdC7AWHbPzDLQioAwDThsAKCHD6KPWYR5QzYiwV3ujKTJlwY7zbbDN7kmUp7iWy3_a4XpiLT-lECYS_z7P8f8o5a8xYgHFRZyaYcWfkB4cLI3HvDDNZmotxrxe4p6F0BXqmGrSOMIPbaUvXRNEVbtmUWZ3zSIiWkPWdQpq9oDmlwfnD9b3mnR37cM4DUP45ZlrERVZoRiIYHeSWAwNUXho612WvOTWmk6EEp2PRQgDlgH5yLuzn2i8Kg8Vje8u5oS_GRA29ZglvhKM1QBB7f2cehBuV5u1gzYqP5M3iAY9O3u_MV1D19rxhsNBTP4wUMFuxSAnmIup-l1WDr4yc_h5rD60MioTaenRbQ","token_type":"bearer","expires_in":3599,"scope":"CXS-TP"}'
+    adapter_metadata:
+      vcr_decompressed: gzip
+  recorded_at: Wed, 28 Jan 2026 19:46:49 GMT
+- request:
+    method: post
+    uri: https://apis-sandbox.fedex.com/ship/v1/shipments/packages/validate
+    body:
+      encoding: UTF-8
+      string: '{"labelResponseOptions":"LABEL","requestedShipment":{"shipper":{"contact":{"personName":"John
+        Sender","phoneNumber":"1234567890","companyName":"Sender Company"},"address":{"streetLines":["123
+        Sender St"],"city":"Austin","stateOrProvinceCode":"TX","postalCode":"73301","countryCode":"US"}},"recipients":[{"contact":{"personName":"Jane
+        Recipient","phoneNumber":"9876543210","companyName":"Recipient Company"},"address":{"streetLines":["456
+        Recipient Ave"],"city":"Los Angeles","stateOrProvinceCode":"CA","postalCode":"90001","countryCode":"US"}}],"shipDatestamp":"2024-01-15","serviceType":"FEDEX_GROUND","packagingType":"YOUR_PACKAGING","pickupType":"USE_SCHEDULED_PICKUP","blockInsightVisibility":false,"shippingChargesPayment":{"paymentType":"SENDER"},"labelSpecification":{"imageType":"PDF","labelStockType":"PAPER_85X11_TOP_HALF_LABEL"},"requestedPackageLineItems":[{"weight":{"units":"LB","value":10}}]},"accountNumber":{"value":"<FILTERED_ACCOUNT_NUMBER>"}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Locale:
+      - en_US
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJDWFMtVFAiXSwiUGF5bG9hZCI6eyJjbGllbnRJZGVudGl0eSI6eyJjbGllbnRLZXkiOiJsNzMyNjIxZjE4MDRjOTRjYjVhMDQ1NTAyNzQ5NTUxMGM1In0sImF1dGhlbnRpY2F0aW9uUmVhbG0iOiJDTUFDIiwiYWRkaXRpb25hbElkZW50aXR5Ijp7InRpbWVTdGFtcCI6IjI4LUphbi0yMDI2IDE0OjQ2OjQ5IEVTVCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhcGltb2RlIjoiU2FuZGJveCIsImN4c0lzcyI6Imh0dHBzOi8vY3hzYXV0aHNlcnZlci1zdGFnaW5nLmFwcC5wYWFzLmZlZGV4LmNvbS90b2tlbi9vYXV0aDIifSwicGVyc29uYVR5cGUiOiJEaXJlY3RJbnRlZ3JhdG9yX0IyQiJ9LCJleHAiOjE3Njk2MzMyMDksImp0aSI6IjQwYjFjMDhlLTRlZWEtNDI4OC1hYmQ2LWY4NDY5ZDljNDYzNiJ9.yxNSA4DU_bimF4mu26n5GLtt_rbir2TGmD7MjIh5tP7G0Kil56VVSf40DC0pGX-NoU3thRreuaPxmx0bx6U0OCXUauwchdGs9ViIEOGypYsZ9hS3VT1QqO3mbnE5IqxgT9_UePjczcaJbnQUc0_o619HpYBL07J0qMfVUNBI_Tc1dUyc39bDKpUhEOQBznii0exjjuSdbvFf2dEkskTDFW0QwOs-ifxM5ozyyt93kr9TfQFU0pPkmBWiryEt34NR07RbwOjR-JqaMWqLaWPvqEvG3v9v5WX8MtJTIcx2CHaTxwcPHLJgoEmrilZbmrjhTfNlLmqWdC7AWHbPzDLQioAwDThsAKCHD6KPWYR5QzYiwV3ujKTJlwY7zbbDN7kmUp7iWy3_a4XpiLT-lECYS_z7P8f8o5a8xYgHFRZyaYcWfkB4cLI3HvDDNZmotxrxe4p6F0BXqmGrSOMIPbaUvXRNEVbtmUWZ3zSIiWkPWdQpq9oDmlwfnD9b3mnR37cM4DUP45ZlrERVZoRiIYHeSWAwNUXho612WvOTWmk6EEp2PRQgDlgH5yLuzn2i8Kg8Vje8u5oS_GRA29ZglvhKM1QBB7f2cehBuV5u1gzYqP5M3iAY9O3u_MV1D19rxhsNBTP4wUMFuxSAnmIup-l1WDr4yc_h5rD60MioTaenRbQ
+      Accept-Encoding:
+      - deflate, gzip
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      X-API-Mode:
+      - Sandbox
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '324'
+      Server:
+      - Layer7-API-Gateway
+      Date:
+      - Wed, 28 Jan 2026 19:46:51 GMT
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Server-Timing:
+      - cdn-cache; desc=MISS, edge; dur=161, origin; dur=929, ak_p; desc="1769629610047_34679443_1205987363_108858_6385_10_23_-";dur=1
+      Set-Cookie:
+      - fdx_bman=f2cfe51b775843fa905b8d4df456b7d7; path=/; domain=.apis-sandbox.fedex.com;
+        Secure
+    body:
+      encoding: ASCII-8BIT
+      string: '{"transactionId":"fe25ccec-9ff8-406d-9b74-8f0d65a40763","output":{"alerts":[{"code":"SHIPMENT.SHIPDATESTAMP.INVALID","message":"Requested
+        shipDatestamp is prior to current date.","alertType":"WARNING"},{"code":"SHIPMENT.VALIDATION.SUCCESS","message":"Shipment
+        validated successfully. No errors found.","alertType":"NOTE"}]}}'
+    adapter_metadata:
+      vcr_decompressed: gzip
+  recorded_at: Wed, 28 Jan 2026 19:46:50 GMT
+recorded_with: VCR 6.4.0
