@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class TestRate < Minitest::Test
-
   def test_rate
     VCR.use_cassette('rate') do
       rate = client.rate(rate_data)
 
       quotes = rate.output['rateReplyDetails']
 
-      assert rate.status == 200
-      assert rate.success?
+      assert_equal 200, rate.status
+      assert_predicate rate, :success?
 
       refute_nil quotes
       refute_empty quotes
-      assert quotes.is_a?(Array)
-      assert quotes.size > 0
+      assert_kind_of Array, quotes
+      assert_predicate quotes.size, :positive?
     end
   end
 
