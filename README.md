@@ -261,6 +261,79 @@ if cancel.success?
 end
 ```
 
+### Document Image Upload (ETD)
+
+Upload letterhead and signature images for Electronic Trade Documents (ETD). These images are used by FedEx on commercial invoices generated through ETD.
+
+> **Note:** The document upload API uses a different host than the main FedEx API. The gem handles this automatically based on your configured host (sandbox vs production).
+
+#### Upload a Signature Image
+
+```ruby
+result = client.upload_signature_image(
+  'path/to/signature.png',
+  reference_id: 'my_signature'
+)
+
+if result.success?
+  puts "Signature uploaded!"
+  puts "Reference ID: #{result.reference_id}"
+  puts "Document ID: #{result.document_id}"
+end
+```
+
+#### Upload a Letterhead Image
+
+```ruby
+result = client.upload_letterhead_image(
+  'path/to/letterhead.png',
+  reference_id: 'my_letterhead'
+)
+
+if result.success?
+  puts "Letterhead uploaded!"
+  puts "Reference ID: #{result.reference_id}"
+  puts "Document ID: #{result.document_id}"
+end
+```
+
+#### Upload with Full Control
+
+Use `upload_document_image` for full control over all parameters:
+
+```ruby
+result = client.upload_document_image(
+  'path/to/image.png',
+  image_type: 'SIGNATURE',        # "SIGNATURE" or "LETTERHEAD"
+  reference_id: 'my_custom_ref',
+  image_index: 'IMAGE_2',         # "IMAGE_1" for letterhead, "IMAGE_2" for signature (auto-detected by default)
+  content_type: 'image/png'       # MIME type (default: "image/png")
+)
+
+if result.success?
+  puts "Image uploaded successfully"
+else
+  puts "Upload failed: #{result.status}"
+  result.errors.each { |e| puts e['message'] }
+end
+```
+
+#### Supported Image Types
+
+| Image Type   | Default Index | Description                              |
+|-------------|---------------|------------------------------------------|
+| `LETTERHEAD` | `IMAGE_1`     | Company letterhead for invoice header    |
+| `SIGNATURE`  | `IMAGE_2`     | Signature image for invoice              |
+
+#### API Endpoints
+
+The gem automatically selects the correct endpoint based on your environment:
+
+| Environment | Endpoint |
+|------------|----------|
+| Sandbox    | `https://documentapitest.prod.fedex.com/sandbox/documents/v1/lhsimages/upload` |
+| Production | `https://documentapi.prod.fedex.com/documents/v1/lhsimages/upload` |
+
 ### Working with Labels
 
 **⭐ Recommended: Use the Consistent Interface**
